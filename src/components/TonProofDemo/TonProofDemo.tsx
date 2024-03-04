@@ -49,7 +49,7 @@ export const TonProofDemo = () => {
 			}
 
 			if (!TonProofDemoApi.accessToken) {
-				tonConnectUI.disconnect();
+				// tonConnectUI.disconnect();
 				setAuthorized(false);
 				return;
 			}

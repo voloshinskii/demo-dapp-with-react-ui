@@ -8,7 +8,7 @@ const defaultTx = {
 	validUntil: Math.floor(Date.now() / 1000) + 600, // unix epoch seconds
 	messages: [
 		{
-			address: '0:2cf3b5b8c891e517c9addbda1c0386a09ccacbb0e3faf630b51cfc8152325acb\n',
+			address: '0:2cf3b5b8c891e517c9addbda1c0386a09ccacbb0e3faf630b51cfc8152325acb',
 			amount: '1',
 		},
 	],

@@ -15,6 +15,7 @@ function App() {
         <div className="app">
             <Header />
             <TxForm />
+            <TonProofDemo />
             <Footer />
         </div>
       </TonConnectUIProvider>

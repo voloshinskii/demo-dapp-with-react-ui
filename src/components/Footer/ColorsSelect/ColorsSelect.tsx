@@ -64,9 +64,11 @@ export interface ColorsSelectProps {
 }
 export const ColorsSelect: FunctionComponent<ColorsSelectProps> = ({ theme }) => {
     const [_, setOptions] = useTonConnectUI();
+    // @ts-ignore
     const [colors, setColors] = useState<ColorsSet>(defaultColors[theme]);
 
     useEffect(() => {
+        // @ts-ignore
         setColors(defaultColors[theme]);
     }, [theme]);
 

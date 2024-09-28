@@ -1,15 +1,17 @@
-import React, {StrictMode} from 'react'
-import { render } from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from './App'
-import './index.scss'
+import './index.scss';
 import './patch-local-storage-for-github-pages';
-import eruda from "eruda";
+import { ChakraProvider } from '@chakra-ui/react'
 
-eruda.init();
+// @ts-ignore
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-render(
-    <StrictMode>
+root.render(
+    <React.StrictMode>
+      <ChakraProvider>
         <App />
-    </StrictMode>,
-    document.getElementById('root') as HTMLElement
+      </ChakraProvider>
+    </React.StrictMode>,
 )

@@ -1,0 +1,102 @@
+{
+  "OpenContract": "0.0.1",
+  "title": "Fungible tokens",
+  "standard": {
+    "authors": [
+      {
+        "name": "Kirill Emelyanenko",
+        "url": "https://github.com/EmelyanenkoK"
+      },
+      {
+        "name": "Tolya Enot",
+        "url": "https://github.com/tolya-yanot"
+      }
+    ],
+    "url": "https://github.com/ton-blockchain/TEPs/blob/master/text/0074-jettons-standard.md"
+  },
+  "interfaces": [
+    {
+      "name": "jetton_master",
+      "get_methods": [
+        {
+          "name": "get_jetton_data"
+        },
+        {
+          "name": "get_wallet_address"
+        }
+      ]
+    },
+    {
+      "name": "jetton_wallet",
+      "get_methods": [
+        {
+          "name": "get_wallet_data"
+        }
+      ]
+    }
+  ],
+  "types": [
+    "set_status#eed236d3 query_id:uint64 status:uint4 = JettonForceAction;"
+  ],
+  "internals": [
+    {
+      "tlb": "transfer#0f8a7ea5 query_id:uint64 amount:(VarUInteger 16) destination:MsgAddress response_destination:MsgAddress custom_payload:(Maybe ^Cell) forward_ton_amount:(VarUInteger 16) forward_payload:(Either Cell ^Cell) = InternalMsgBody;",
+      "name": "Jetton transfer",
+      "fields": [
+        {
+          "name": "query_id",
+          "description": "arbitrary request number."
+        },
+        {
+          "name": "amount",
+          "description": "amount of transferred jettons in elementary units."
+        },
+        {
+          "name": "destination",
+          "description": "address of the new owner of the jettons."
+        },
+        {
+          "name": "response_destination",
+          "description": "address where to send a response with confirmation of a successful transfer and the rest of the incoming message Toncoins."
+        },
+        {
+          "name": "custom_payload",
+          "description": "optional custom data (which is used by either sender or receiver jetton wallet for inner logic)."
+        },
+        {
+          "name": "forward_ton_amount",
+          "description": "the amount of nanotons to be sent to the destination address.",
+          "input_modes": [
+            "ton_transfer"
+          ]
+        },
+        {
+          "name": "forward_payload",
+          "description": "optional custom data that should be sent to the destination address."
+        }
+      ]
+    },
+    {
+      "tlb": "burn#595f07bc query_id:uint64 amount:(VarUInteger 16) response_destination:MsgAddress custom_payload:(Maybe ^Cell) = InternalMsgBody;",
+      "name": "Jetton burn",
+      "fields": [
+        {
+          "name": "query_id",
+          "description": "arbitrary request number."
+        },
+        {
+          "name": "amount",
+          "description": "amount of burned jettons in elementary units."
+        },
+        {
+          "name": "response_destination",
+          "description": "address where to send a response with confirmation of a successful burn and the rest of the incoming message Toncoins."
+        },
+        {
+          "name": "custom_payload",
+          "description": "optional custom data (which is used by either sender or receiver jetton wallet for inner logic)."
+        }
+      ]
+    }
+  ]
+}

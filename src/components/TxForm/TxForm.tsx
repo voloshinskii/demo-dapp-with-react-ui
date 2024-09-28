@@ -1,36 +1,25 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import ReactJson from 'react-json-view';
 import './style.scss';
 import {useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
+import {TxPlayground} from "../TxPlayground/TxPlayground";
+import {MessagesDecoder} from "../../transactions";
 
-
-const defaultTx = {
-	validUntil: Math.floor(Date.now() / 1000) + 600, // unix epoch seconds
-	messages: [
-		{
-			address: '0:881c53b5c4a7cf15e2c885548894daac89cce6625d4b4c768fd0ec67760eaf91',
-			amount: '1',
-		},
-		{
-			address: '0:881c53b5c4a7cf15e2c885548894daac89cce6625d4b4c768fd0ec67760eaf91',
-			amount: '1',
-		},
-	],
-};
+export function useDecoders() {
+	return useMemo(() => new MessagesDecoder([{ amount: '50000000', address: 'UQD2NmD_lH5f5u1Kj3KfGyTvhZSX0Eg6qp2a5IQUKXxOGzCi' }]), []);
+}
 
 export function TxForm() {
-	const [tx, setTx] = useState(defaultTx);
 	const wallet = useTonWallet();
 	const [tonConnectUi] = useTonConnectUI();
-
-	const onChange = useCallback((value: object) => setTx((value as { updated_src: typeof defaultTx }).updated_src), []);
+	const decodedMessages = useDecoders();
 
 	return (
 		<div className="send-tx-form">
 			<h3>Configure and send transaction</h3>
-			<ReactJson src={defaultTx} theme="ocean" onEdit={onChange} onAdd={onChange} onDelete={onChange} />
+			<TxPlayground decoder={decodedMessages} />
 			{wallet ? (
-				<button onClick={() => tonConnectUi.sendTransaction(tx)}>
+				<button onClick={() => tonConnectUi.sendTransaction({ validUntil: Math.floor(Date.now() / 1000) + 600, messages: decodedMessages.getTonconnectMessages() })}>
 					Send transaction
 				</button>
 			) : (

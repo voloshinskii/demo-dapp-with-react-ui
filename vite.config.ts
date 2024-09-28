@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  define: {
+    global: {},
+  },
   resolve: {
     alias: {
       // This is required by "buffer" package to work properly

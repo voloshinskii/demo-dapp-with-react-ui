@@ -61,7 +61,7 @@ export function MessageBody(props: { message: MessageDecoder;  onAddMessage: () 
           }}
           value={state.payload} type='string'
         />
-        <FormHelperText>Raw payload</FormHelperText>
+        <FormHelperText>Base64-encoded payload string</FormHelperText>
       </FormControl>
       <TxDeclaration schema={state.loadedSchema} />
       <FormControl my={8}>

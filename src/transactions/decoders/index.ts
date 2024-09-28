@@ -19,7 +19,7 @@ export function getTLBDecoder(tlbType: TLBFieldType): DecoderImplementation {
     case "TLBCellInsideType":
       return new CellDecoder();
     case "TLBNamedType":
-      return new CellRefDecoder();
+      return new CellRefDecoder(true);
     case "TLBNumberType":
       // TODO: fix ?? 64
       return new UintDecoder(tlbType.maxBits ?? 64);

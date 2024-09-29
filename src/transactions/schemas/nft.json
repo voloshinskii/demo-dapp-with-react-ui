@@ -1,0 +1,65 @@
+{
+  "OpenContract": "0.0.1",
+  "title": "NFT Standard",
+  "standard": {
+    "authors": [
+      {
+        "name": "Kirill Emelyanenko",
+        "url": "https://github.com/EmelyanenkoK"
+      },
+      {
+        "name": "Tolya Enot",
+        "url": "https://github.com/tolya-yanot"
+      }
+    ],
+    "url": "https://github.com/ton-blockchain/TEPs/blob/master/text/0062-nft-standard.md"
+  },
+  "interfaces": [
+    {
+      "name": "nft_item",
+      "get_methods": [
+        {
+          "name": "get_nft_data"
+        },
+        {
+          "name": "get_nft_content"
+        }
+      ]
+    }
+  ],
+  "internals": [
+    {
+      "tlb": "transfer#5fcc3d14 query_id:uint64 new_owner:MsgAddress response_destination:MsgAddress custom_payload:(Maybe ^Cell) forward_amount:(VarUInteger 16) forward_payload:(Either NFTPayload ^NFTPayload) = InternalMsgBody;",
+      "name": "NFT Transfer",
+      "fields": [
+        {
+          "name": "query_id",
+          "description": "arbitrary request number."
+        },
+        {
+          "name": "new_owner",
+          "description": "amount of transferred jettons in elementary units."
+        },
+        {
+          "name": "response_destination",
+          "description": "address where to send a response with confirmation of a successful transfer and the rest of the incoming message Toncoins."
+        },
+        {
+          "name": "custom_payload",
+          "description": "optional custom data (which is used by nft contract for inner logic)."
+        },
+        {
+          "name": "forward_amount",
+          "description": "the amount of nanotons to be sent to the destination address.",
+          "input_modes": [
+            "ton_transfer"
+          ]
+        },
+        {
+          "name": "forward_payload",
+          "description": "optional custom data that should be sent to the destination address."
+        }
+      ]
+    }
+  ]
+}

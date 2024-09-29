@@ -1,8 +1,9 @@
-import React, {useCallback, useState, ChangeEvent, useMemo, useEffect} from "react";
+import React, {useCallback, useState, ChangeEvent, useMemo, useEffect, ReactNode} from "react";
 import { TxInputProps } from "../../interfaces/TxInput";
 import { FormControl, FormHelperText, FormLabel, Input } from "@chakra-ui/react";
 
 export interface BaseInputProps {
+  children?: ReactNode;
   validateField: (newValue: string) => boolean;
   helperText?: React.ReactNode;
   headerText?: ({ value }: { value: string }) => React.ReactNode;
@@ -36,6 +37,7 @@ export function BaseInput(props: TxInputProps & BaseInputProps) {
       <FormLabel>{props.label} {headerText}</FormLabel>
       <Input value={value} onChange={onUpdateField} type='text' />
       {props.helperText ?? <FormHelperText>{props.description}</FormHelperText>}
+      {props.children}
     </FormControl>
   )
 }

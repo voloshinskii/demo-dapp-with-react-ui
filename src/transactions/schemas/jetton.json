@@ -45,7 +45,10 @@
       "fields": [
         {
           "name": "query_id",
-          "description": "arbitrary request number."
+          "description": "arbitrary request number.",
+          "input_modes": [
+            "crc32_decode"
+          ]
         },
         {
           "name": "amount",
@@ -82,7 +85,10 @@
       "fields": [
         {
           "name": "query_id",
-          "description": "arbitrary request number."
+          "description": "arbitrary request number.",
+          "input_modes": [
+            "crc32_decode"
+          ]
         },
         {
           "name": "amount",

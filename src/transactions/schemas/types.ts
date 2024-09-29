@@ -22,7 +22,8 @@ interface OpenContractInterface {
 
 export enum OpenContractFieldExtension {
   TonTransfer = 'ton_transfer',
-  InsertAddress = 'insert_address'
+  InsertAddress = 'insert_address',
+  Crc32Decode = 'crc32_decode',
 }
 
 export interface OpenContractInternalField {

@@ -168,6 +168,15 @@ export class MessagesDecoder {
       init: decoded.init,
     }))
   }
+
+  public encodeMessagesJSONToBase64() {
+    return btoa(JSON.stringify(this.getTonconnectMessages()));
+  }
+
+  public static initFromBase64(base64EncodedJSON: string) {
+    const messages = JSON.parse(atob(base64EncodedJSON));
+    return new MessagesDecoder(messages);
+  }
 }
 
 export function useDecoderMessages(decoder: MessagesDecoder) {
@@ -179,4 +188,18 @@ export function useDecoderMessages(decoder: MessagesDecoder) {
     }
   }, [decoder]);
   return messages;
+}
+
+export function useDecoderEncodedState(decoder: MessagesDecoder) {
+  const messages = useDecoderMessages(decoder);
+  const [encodedState, setEncodedState] = useState<string>(decoder.encodeMessagesJSONToBase64());
+
+  useEffect(() => {
+    const unsubscribers = messages.map(message => message.subscribe(() => setEncodedState(decoder.encodeMessagesJSONToBase64())));
+    return () => {
+      unsubscribers.map(unsubscribe => unsubscribe());
+    }
+  }, [decoder]);
+
+  return encodedState;
 }

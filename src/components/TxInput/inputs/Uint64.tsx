@@ -29,7 +29,7 @@ export function Uint64TxInput(props: TxInputProps) {
 
   return (
     <BaseInput description={props.description} onUpdate={props.onUpdate} label={props.label} value={props.value} validateField={validateField}>
-      {crc32Value && crc32Value.knownString && <FormHelperText><Tooltip label='Referral-query TEP (draft)' hasArrow arrowSize={15}><span>referral: <b>{crc32Value.knownString}</b></span></Tooltip></FormHelperText>}
+      {crc32Value && crc32Value.knownString && <FormHelperText><Tooltip label='Referral-query TEP (draft)' hasArrow arrowSize={15}><span>referral: <b>{crc32Value.knownString}</b> ({crc32Value.hex})</span></Tooltip></FormHelperText>}
     </BaseInput>
   )
 }

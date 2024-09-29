@@ -53,6 +53,16 @@ export function MessageBody(props: { message: MessageDecoder;  onAddMessage: () 
       <TxReceiverInput message={props.message} />
       <TxInput modes={[OpenContractFieldExtension.TonTransfer]} label={"Send amount"} onUpdate={(newValue) => props.message.updateAmount(newValue)} value={props.message.amount.toString()} isRequired fieldType={{ kind: "TLBCoinsType" }} />
       <FormControl my={8}>
+        <FormLabel>Raw init</FormLabel>
+        <Input
+          onChange={(e) => {
+            props.message.updateInit(e.target.value);
+            updateTlbInputs();
+          }}
+          value={props.message.init} type='string'
+        />
+      </FormControl>
+      <FormControl my={8}>
         <FormLabel>Raw payload</FormLabel>
         <Input
           onChange={(e) => {
@@ -64,16 +74,6 @@ export function MessageBody(props: { message: MessageDecoder;  onAddMessage: () 
         <FormHelperText>Base64-encoded payload string</FormHelperText>
       </FormControl>
       <TxDeclaration schema={state.loadedSchema} />
-      <FormControl my={8}>
-        <FormLabel>Raw init</FormLabel>
-        <Input
-          onChange={(e) => {
-            props.message.updateInit(e.target.value);
-            updateTlbInputs();
-          }}
-          value={props.message.init} type='string'
-        />
-      </FormControl>
       {tlbInputs}
     </TabPanel>
   )

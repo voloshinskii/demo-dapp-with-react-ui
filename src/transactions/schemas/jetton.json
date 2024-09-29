@@ -41,7 +41,7 @@
   "internals": [
     {
       "tlb": "transfer#0f8a7ea5 query_id:uint64 amount:(VarUInteger 16) destination:MsgAddress response_destination:MsgAddress custom_payload:(Maybe ^Cell) forward_ton_amount:(VarUInteger 16) forward_payload:(Either Cell ^Cell) = InternalMsgBody;",
-      "name": "Jetton transfer",
+      "name": "Jetton transfer (transfer#0f8a7ea5)",
       "fields": [
         {
           "name": "query_id",
@@ -78,7 +78,7 @@
     },
     {
       "tlb": "burn#595f07bc query_id:uint64 amount:(VarUInteger 16) response_destination:MsgAddress custom_payload:(Maybe ^Cell) = InternalMsgBody;",
-      "name": "Jetton burn",
+      "name": "Jetton burn (burn#595f07bc)",
       "fields": [
         {
           "name": "query_id",

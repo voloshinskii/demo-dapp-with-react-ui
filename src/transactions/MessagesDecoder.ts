@@ -16,6 +16,8 @@ export class MessageDecoder {
   public amount: string;
   public loadedSchema: FulfilledOpenContractInternal | undefined;
 
+  private payloadFromBuffer: string | undefined;
+
   private subscribers = new Set<MessageDecoderSubscriber>();
 
   public subscribe = (subscriber: MessageDecoderSubscriber) => {
@@ -63,7 +65,7 @@ export class MessageDecoder {
     try {
       const boc = this.boc;
       if (!boc) {
-        return undefined;
+        return this.payloadFromBuffer;
       }
       return boc.toString('base64');
     } catch (e) {
@@ -90,6 +92,7 @@ export class MessageDecoder {
 
   private decodePayload(payload: string) {
     try {
+      this.payloadFromBuffer = payload;
       if (!payload) {
         this.loadedSchema = undefined;
         this.emit();
@@ -97,13 +100,13 @@ export class MessageDecoder {
       }
       const slice = Cell.fromBase64(payload).beginParse();
       const opCode = slice.loadUint(32);
-      console.log(opCode);
       this.loadedSchema = mappedSchemas.flatMap(schema => schema.internals).filter(internal => internal !== undefined).find(internal => new BigNumber((internal as FulfilledOpenContractInternal).binary).isEqualTo(opCode));
       if (this.loadedSchema) {
         this.loadedSchema.fields.reduce((accSlice, currPart) => {
           this._fieldValues[currPart.name] = getTLBDecoder(currPart.fieldType).decodeValue(accSlice);
           return accSlice;
         }, slice);
+        this.payloadFromBuffer = undefined;
       }
       this.emit();
     } catch (e) {

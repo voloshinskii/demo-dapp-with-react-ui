@@ -9,14 +9,12 @@ export interface TxHeaderProps {
 export function TxTab(props: { message: MessageDecoder }) {
   const decoderState = useMessageDecoderState(props.message);
   return (
-    <Tab>{decoderState.loadedSchema ? decoderState.loadedSchema.name : decoderState.payload ? 'Failed to decode' : 'Transfer without payload'}</Tab>
+    <Tab>{decoderState.loadedSchema ? decoderState.loadedSchema.name : decoderState.payload ? 'Transfer with unknown payload' : 'Transfer without payload'}</Tab>
   )
 }
 
 export function TxHeader(props: TxHeaderProps) {
   const decoded_messages = useDecoderMessages(props.decodedMessages);
-
-  console.log(decoded_messages);
 
   return (
     <>

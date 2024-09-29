@@ -1,9 +1,10 @@
 import React from "react";
 import {TxInputProps} from "../../../interfaces/TxInput";
 import {BaseInput} from "../Base";
+import {isBase64} from "../../../utils";
 
 const validateField = (value: string) => {
-  return true;
+  return isBase64(value);
 }
 
 export function CellTxInput(props: TxInputProps) {

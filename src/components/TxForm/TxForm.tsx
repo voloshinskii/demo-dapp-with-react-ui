@@ -38,7 +38,6 @@ export function TxForm() {
 
 	return (
 		<div className="send-tx-form">
-			<h3>Configure and send transaction</h3>
 			<TxPlayground decoder={decodedMessages} />
 			{wallet ? (
 				<button onClick={() => tonConnectUi.sendTransaction({ validUntil: Math.floor(Date.now() / 1000) + 600, messages: decodedMessages.getTonconnectMessages() })}>

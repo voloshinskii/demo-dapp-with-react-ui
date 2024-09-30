@@ -68,8 +68,8 @@ export function MessageBody(props: { message: MessageDecoder;  onAddMessage: () 
         <Input
           onChange={(e) => {
             const value = e.target.value.trim();
-            const isHexEncoded = /[0-9A-Fa-f]{6}/g.test(value);
-            props.message.updatePayload(isHexEncoded ? Buffer.from(value, 'hex').toString('base64') : e.target.value);
+            const isHexEncoded = /^[0-9A-Fa-f]+$/.test(value);
+            props.message.updatePayload(isHexEncoded ? Buffer.from(value, 'hex').toString('base64') : value);
             updateTlbInputs();
           }}
           value={state.payload} type='string'

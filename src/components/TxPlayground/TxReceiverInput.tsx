@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {TxInput} from "../TxInput/TxInput";
 import {TONApi} from "../../tonapi";
 import {Address} from "@ton/core";
-import {Box, HStack, Link, Text} from "@chakra-ui/react";
+import {Box, HStack, Link, Text, Tooltip} from "@chakra-ui/react";
 import {mappedSchemas} from "../../transactions/schemas";
 import {OpenContractFieldExtension} from "../../transactions/schemas/types";
 import {mockPayload} from "../../transactions/decoders";
@@ -40,7 +40,7 @@ export function TxReceiverInput(props: TxReceiverInputProps) {
             Known internals:
           </Text>
           <HStack spacing='12px'>
-          {knownInternals.map((schema) => <Link onClick={() => props.message.updatePayload(mockPayload(schema.binary, schema.fields))} color='teal.500' key={schema.binary}>{schema.name}</Link>)}
+            {knownInternals.map((schema) => <Tooltip label={schema.tlb} key={schema.binary}><Link onClick={() => props.message.updatePayload(mockPayload(schema.binary, schema.fields))} color='teal.500'>{schema.name}</Link></Tooltip>)}
         </HStack>
       </HStack>) : null}
     </Box>

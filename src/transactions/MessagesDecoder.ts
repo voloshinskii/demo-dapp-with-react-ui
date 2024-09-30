@@ -202,7 +202,7 @@ export function useDecoderEncodedState(decoder: MessagesDecoder) {
     return () => {
       unsubscribers.map(unsubscribe => unsubscribe());
     }
-  }, [decoder]);
+  }, [messages]);
 
   return encodedState;
 }

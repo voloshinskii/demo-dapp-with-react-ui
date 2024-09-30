@@ -5,9 +5,9 @@ interface OpenContractAuthor {
   url?: string;
 }
 
-interface OpenContractStandard {
+export interface OpenContractStandard {
   authors?: OpenContractAuthor[];
-  url?: string;
+  url: string;
 }
 
 interface OpenContractGetMethods {

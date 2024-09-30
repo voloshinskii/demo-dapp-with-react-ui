@@ -1,6 +1,6 @@
-import { Code } from "@chakra-ui/react";
 import React from "react";
 import {FulfilledOpenContractInternal} from "../../tlb/tlb-codegen/main";
+import {PrismCodeTLB} from "../../prism";
 
 export interface TxDeclarationProps {
   schema: FulfilledOpenContractInternal | undefined;
@@ -11,8 +11,8 @@ export function TxDeclaration(props: TxDeclarationProps) {
     return null;
   }
   return (
-    <Code>
+    <PrismCodeTLB>
       {props.schema.tlb}
-    </Code>
+    </PrismCodeTLB>
   );
 }

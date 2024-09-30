@@ -9,8 +9,8 @@ export interface TxReceiverInputProps {
 export function SchemaStandard(props: TxReceiverInputProps) {
   return (
     <Box my={2}>
-      <Link target="_blank" href={props.standard.url}>
-        <Text color={'teal.500'} my={2}>Standard</Text>
+      <Link color={'teal.500'} my={2} target="_blank" href={props.standard.url}>
+        Standard
       </Link>
       {props.standard.authors?.length ? (
         <HStack spacing='4px'>

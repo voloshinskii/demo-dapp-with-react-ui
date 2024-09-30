@@ -13,11 +13,13 @@ export function SchemaStandard(props: TxReceiverInputProps) {
         <Text color={'teal.500'} my={2}>Standard</Text>
       </Link>
       {props.standard.authors?.length ? (
-        <HStack spacing='12px'>
+        <HStack spacing='4px'>
           <Text>Authors:</Text>
-          {props.standard.authors.map(author => (
-            <Link target="_blank" color='teal.500' key={author.name} href={author.url}>{author.name}</Link>
-          ))}
+          <HStack spacing='12px'>
+            {props.standard.authors.map(author => (
+              <Link target="_blank" color='teal.500' key={author.name} href={author.url}>{author.name}</Link>
+            ))}
+          </HStack>
         </HStack>
       ) : null}
     </Box>

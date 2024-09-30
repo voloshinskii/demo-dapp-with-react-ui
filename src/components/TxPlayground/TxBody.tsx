@@ -67,7 +67,7 @@ export function MessageBody(props: { message: MessageDecoder;  onAddMessage: () 
         <FormLabel>Raw payload</FormLabel>
         <Input
           onChange={(e) => {
-            const value = e.target.value;
+            const value = e.target.value.trim();
             const isHexEncoded = /[0-9A-Fa-f]{6}/g.test(value);
             props.message.updatePayload(isHexEncoded ? Buffer.from(value, 'hex').toString('base64') : e.target.value);
             updateTlbInputs();

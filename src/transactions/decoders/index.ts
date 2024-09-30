@@ -9,6 +9,7 @@ import {VarIntegerDecoder} from "./varInteger";
 import {FulfilledOpenContractInternalField} from "../../tlb/tlb-codegen/main";
 import {Builder} from "@ton/core";
 import BigNumber from "bignumber.js";
+import {BoolDecoder} from "./bool";
 
 export function getTLBDecoder(tlbType: TLBFieldType): DecoderImplementation {
   switch (tlbType.kind) {
@@ -20,11 +21,15 @@ export function getTLBDecoder(tlbType: TLBFieldType): DecoderImplementation {
       return new CellDecoder();
     case "TLBNamedType":
       return new CellRefDecoder(true);
+    case "TLBCellRefType":
+      return new CellRefDecoder();
     case "TLBNumberType":
       // TODO: fix ?? 64
       return new UintDecoder(tlbType.maxBits ?? 64);
     case "TLBVarIntegerType":
       return new VarIntegerDecoder(tlbType.n);
+    case "TLBBoolType":
+      return new BoolDecoder();
     default:
       throw Error(`Decoder for kind ${tlbType.kind} is not currently supported. You can contribute to our repository!`);
   }

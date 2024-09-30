@@ -71,21 +71,12 @@ function getField(
           subFields: [],
         };
       } else {
-        let subField = getField(
-          new FieldNamedDef(fieldName, field.expr.expr),
-          constructor,
-          fieldIndex + "_" + "0"
-        );
-        if (subField) {
-          let result: TLBField = {
-            name: fieldName,
-            anonymous: true,
-            fieldType: { kind: "TLBBoolType" },
-            subFields: [subField],
-          };
-          return result;
-        }
-        return subField;
+        return {
+          name: fieldName,
+          anonymous: false,
+          fieldType: { kind: "TLBCellRefType" },
+          subFields: [],
+        };
       }
     }
 

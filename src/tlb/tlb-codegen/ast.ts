@@ -103,6 +103,10 @@ export type TLBCellType = {
   kind: "TLBCellType";
 };
 
+export type TLBCellRefType = {
+  kind: "TLBCellRefType";
+};
+
 export type TLBNumberType = {
   kind: "TLBNumberType";
   bits: TLBMathExpr;
@@ -152,7 +156,8 @@ export type TLBFieldType =
   | TLBCellInsideType
   | TLBMultipleType
   | TLBCondType
-  | TLBExoticType;
+  | TLBExoticType
+  | TLBCellRefType;
 
 export type TLBField = {
   name: string;

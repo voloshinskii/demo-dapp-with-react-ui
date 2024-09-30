@@ -1,0 +1,88 @@
+{
+  "OpenContract": "0.0.1",
+  "title": "SBT Standard",
+  "standard": {
+    "authors": [
+      {
+        "name": "Oleg Baranov",
+        "url": "https://github.com/xssnick"
+      },
+      {
+        "name": "Narek Abovyan",
+        "url": "https://github.com/Naltox"
+      },
+      {
+        "name": "Kirill Emelyanenko",
+        "url": "https://github.com/EmelyanenkoK"
+      },
+      {
+        "name": "Oleg Andreev",
+        "url": "https://github.com/oleganza"
+      }
+    ],
+    "url": "https://github.com/ton-blockchain/TEPs/blob/master/text/0085-sbt-standard.md"
+  },
+  "interfaces": [
+    {
+      "name": "sbt",
+      "get_methods": [
+        {
+          "name": "get_authority_address"
+        }
+      ]
+    }
+  ],
+  "internals": [
+    {
+      "tlb": "destroy#1f04537a query_id:uint64 = InternalMsgBody;",
+      "name": "SBT Destroy",
+      "fields": [
+        {
+          "name": "query_id",
+          "description": "arbitrary request number.",
+          "input_modes": [
+            "crc32_decode"
+          ]
+        }
+      ]
+    },
+    {
+      "tlb": "revoke#6f89f5e3 query_id:uint64 = InternalMsgBody;",
+      "name": "SBT Revoke",
+      "fields": [
+        {
+          "name": "query_id",
+          "description": "arbitrary request number.",
+          "input_modes": [
+            "crc32_decode"
+          ]
+        }
+      ]
+    },
+    {
+      "tlb": "prove_ownership#04ded148 query_id:uint64 dest:MsgAddress forward_payload:^Cell with_content:Bool = InternalMsgBody;",
+      "name": "SBT Prove ownership",
+      "fields": [
+        {
+          "name": "query_id",
+          "description": "arbitrary request number.",
+          "input_modes": [
+            "crc32_decode"
+          ]
+        },
+        {
+          "name": "dest",
+          "description": "address of the contract to which the ownership of SBT should be proven."
+        },
+        {
+          "name": "forward_payload",
+          "description": "arbitrary data required by target contract."
+        },
+        {
+          "name": "with_content",
+          "description": "if true, SBT's content cell will be included in message to contract."
+        }
+      ]
+    }
+  ]
+}

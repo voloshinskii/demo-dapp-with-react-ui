@@ -3,10 +3,10 @@ import {OpenContractFieldExtension} from "../transactions/schemas/types";
 
 export interface TxInputProps {
   label: string;
-  value: string;
+  value: any;
   isRequired?: boolean;
   description?: string;
-  onUpdate: (newValue: string) => void;
+  onUpdate: (newValue: any) => void;
   modes?: OpenContractFieldExtension[]
   headerText?: ({ value }: { value: string }) => React.ReactNode;
 }

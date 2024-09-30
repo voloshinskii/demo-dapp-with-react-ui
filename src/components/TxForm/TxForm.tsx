@@ -1,9 +1,8 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import ReactJson from 'react-json-view';
+import React, {useEffect, useMemo} from 'react';
 import './style.scss';
 import {useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
 import {TxPlayground} from "../TxPlayground/TxPlayground";
-import {MessagesDecoder, useDecoderEncodedState, useDecoderMessages} from "../../transactions";
+import {MessagesDecoder, useDecoderEncodedState} from "../../transactions";
 
 export function useDecoders() {
 	return useMemo(() => {

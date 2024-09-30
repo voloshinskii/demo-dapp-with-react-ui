@@ -195,7 +195,10 @@ export function useDecoderEncodedState(decoder: MessagesDecoder) {
   const [encodedState, setEncodedState] = useState<string>(decoder.encodeMessagesJSONToBase64());
 
   useEffect(() => {
-    const unsubscribers = messages.map(message => message.subscribe(() => setEncodedState(decoder.encodeMessagesJSONToBase64())));
+    const unsubscribers = messages.map(message => {
+      setEncodedState(decoder.encodeMessagesJSONToBase64());
+      return message.subscribe(() => setEncodedState(decoder.encodeMessagesJSONToBase64()))
+    });
     return () => {
       unsubscribers.map(unsubscribe => unsubscribe());
     }

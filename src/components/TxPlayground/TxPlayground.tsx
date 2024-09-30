@@ -10,7 +10,7 @@ export interface TxPlaygroundProps {
 
 export function TxPlayground(props: TxPlaygroundProps) {
   return (
-    <Tabs>
+    <Tabs width={"100%"}>
       <TxHeader decodedMessages={props.decoder} />
       <TxBody onAddMessage={() => props.decoder.addMessage()} onDeleteMessage={(decoder) => props.decoder.removeMessage(decoder)} decodedMessages={props.decoder} />
     </Tabs>

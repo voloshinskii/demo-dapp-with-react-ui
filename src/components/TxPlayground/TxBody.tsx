@@ -15,6 +15,7 @@ import {TxDeclaration} from "./TxDeclaration";
 import {TxReceiverInput} from "./TxReceiverInput";
 import {AddIcon, DeleteIcon} from "@chakra-ui/icons";
 import {OpenContractFieldExtension} from "../../transactions/schemas/types";
+import {Buffer} from "buffer";
 
 export interface TxBodyProps {
   decodedMessages: MessagesDecoder;
@@ -66,7 +67,9 @@ export function MessageBody(props: { message: MessageDecoder;  onAddMessage: () 
         <FormLabel>Raw payload</FormLabel>
         <Input
           onChange={(e) => {
-            props.message.updatePayload(e.target.value);
+            const value = e.target.value;
+            const isHexEncoded = /[0-9A-Fa-f]{6}/g.test(value);
+            props.message.updatePayload(isHexEncoded ? Buffer.from(value, 'hex').toString('base64') : e.target.value);
             updateTlbInputs();
           }}
           value={state.payload} type='string'
